@@ -72,9 +72,7 @@ class ItemMusicListPresenter(private var activity: ItemMusicListActivity, privat
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText!!.toString().isNotEmpty()) {
-                    MusicContentManager.searchText = newText!!.toString()
-                } else {
+                if (newText!!.toString().isNotEmpty()) MusicContentManager.searchText = newText.toString() else {
                     MusicContentManager.searchText = ""
                     MusicContentManager.ITEMS_SEARCH = ArrayList()
                     isSearching = false;

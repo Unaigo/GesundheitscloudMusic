@@ -43,9 +43,9 @@ class ItemMusicDetailActivity : AppCompatActivity() {
             // using a fragment transaction.
             val fragment = ItemMusicDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(
+                    putInt(
                         ItemMusicDetailFragment.ARG_ITEM_ID,
-                        intent.getStringExtra(ItemMusicDetailFragment.ARG_ITEM_ID)
+                        intent.getIntExtra(ItemMusicDetailFragment.ARG_ITEM_ID,0)
                     )
                 }
             }

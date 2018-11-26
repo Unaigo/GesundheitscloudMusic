@@ -32,7 +32,7 @@ class SimpleItemRecyclerViewAdapter(
             if (twoPane) {
                 val fragment = ItemMusicDetailFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ItemMusicDetailFragment.ARG_ITEM_ID, item.trackId.toString())
+                        putInt(ItemMusicDetailFragment.ARG_ITEM_ID, item.trackId!!)
                     }
                 }
                 parentActivity.supportFragmentManager
@@ -74,7 +74,8 @@ class SimpleItemRecyclerViewAdapter(
     {
         val hms = String.format(
             "%02d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(duration!!.toLong()) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(duration!!.toLong())),
+            TimeUnit.MILLISECONDS.toMinutes(duration!!.toLong()) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(
+                duration.toLong())),
             TimeUnit.MILLISECONDS.toSeconds(duration!!.toLong()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration!!.toLong()))
         )
 

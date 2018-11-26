@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gesundheitscloud.unai.gesundheitscloudmusic.Logic.MusicContentManager
+import com.gesundheitscloud.unai.gesundheitscloudmusic.Models.ClientModels.MusicClientModel
 import com.gesundheitscloud.unai.gesundheitscloudmusic.R
-import com.gesundheitscloud.unai.gesundheitscloudmusic.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_itemmusic_detail.*
 import kotlinx.android.synthetic.main.itemmusic_detail.view.*
 
@@ -21,7 +22,7 @@ class ItemMusicDetailFragment : Fragment() {
     /**
      * The dummy content this fragment is presenting.
      */
-    private var item: DummyContent.DummyItem? = null
+    private var item: MusicClientModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,8 @@ class ItemMusicDetailFragment : Fragment() {
                 // Load the dummy content specified by the fragment
                 // arguments. In a real-world scenario, use a Loader
                 // to load content from a content provider.
-                item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-                activity?.toolbar_layout?.title = item?.content
+                item = MusicContentManager.ITEM_MAP[it.getInt(ARG_ITEM_ID)]
+                activity?.toolbar_layout?.title = item?.trackName
             }
         }
     }
@@ -45,7 +46,7 @@ class ItemMusicDetailFragment : Fragment() {
 
         // Show the dummy content as text in a TextView.
         item?.let {
-            rootView.itemmusic_detail.text = it.details
+            rootView.itemmusic_detail.text = it.artistName
         }
 
         return rootView
