@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- selected -->
+    <item android:state_selected="true" android:drawable="@drawable/rectangle_categories_selected" />
+    <!-- default -->
+    <item android:drawable="@drawable/rectangle_categories" />
+</selector>
