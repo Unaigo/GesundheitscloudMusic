@@ -13,6 +13,8 @@ object MusicContentManager
 
     var searchText : String? = ""
 
+    var ITEMS_SEARCH_ACTIVE : MutableList<MusicClientModel> = ArrayList()
+
     var FILTER_SELECTED : FilterTypes  = FilterTypes.None
 
     fun setPlanetsServerAndFactoryFromSearch(musicServerModel: MusicServerModel)
@@ -44,6 +46,7 @@ object MusicContentManager
             ITEMS_SEARCH.add(musicClientModel)
             ITEM_MAP.put(musicClientModel.trackId!!, musicClientModel)
         }
+        ITEMS_SEARCH_ACTIVE = ITEMS_SEARCH
     }
 
     fun reorderBy(filterType : FilterTypes) : List<MusicClientModel>
@@ -51,20 +54,24 @@ object MusicContentManager
         if(filterType == FilterTypes.Duration)
         {
             val sortedList = ITEMS_SEARCH.sortedWith(compareBy(MusicClientModel::trackTimeMillis))
+            ITEMS_SEARCH_ACTIVE = sortedList as MutableList<MusicClientModel>
             return sortedList
         }
         else  if(filterType == FilterTypes.Genre)
         {
             val sortedList = ITEMS_SEARCH.sortedWith(compareBy(MusicClientModel::primaryGenreName))
+            ITEMS_SEARCH_ACTIVE = sortedList as MutableList<MusicClientModel>
             return sortedList
         }
         else  if(filterType == FilterTypes.Price)
         {
             val sortedList = ITEMS_SEARCH.sortedWith(compareBy(MusicClientModel::trackPrice))
+            ITEMS_SEARCH_ACTIVE = sortedList as MutableList<MusicClientModel>
             return sortedList
         }
         else
         {
+            ITEMS_SEARCH_ACTIVE = ITEMS_SEARCH
             return ITEMS_SEARCH
         }
     }
